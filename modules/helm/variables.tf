@@ -17,3 +17,8 @@ variable "kubernetes_namespace" {
     type = string
     default = ""
 }
+
+variable "root_app_path" {
+    type = string
+    default = ""
+}

@@ -50,6 +50,7 @@ module "helm" {
   cluster_endpoint = module.my_eks.cluster_endpoint
   cluster_certificate_authority_data = module.my_eks.cluster_certificate_authority_data
   cluster_name = module.my_eks.cluster_name
+  root_app_path = "../../modules/helm/root_chart_prod"
 }
 
 

@@ -12,7 +12,7 @@ resource "helm_release" "argocd" {
 resource "helm_release" "root_app" {
 
   name       = "root-app"
-  chart      = "../../modules/helm/root_chart"
+  chart      = var.root_app_path 
   version    = "0.1.0"
   depends_on = [helm_release.argocd]
    }
