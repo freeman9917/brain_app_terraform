@@ -31,11 +31,11 @@ variable "priv2_subnet" {
 
 variable "az1" {
     type = string
-    default = "ap-south-1a"
+    default = "eu-central-1a"
 }
 
 variable "az2" {
     type = string
-    default = "ap-south-1b"
+    default = "eu-central-1b"
 }
 

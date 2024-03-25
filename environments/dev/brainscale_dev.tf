@@ -1,6 +1,20 @@
 provider "aws" {
-  region     = "ap-south-1"
+  region     = "eu-central-1"
 }
+
+provider "helm" {
+  kubernetes {
+  config_path = "~/.kube/config"
+    host                   = module.my_eks.cluster_endpoint
+    cluster_ca_certificate = base64decode(module.my_eks.cluster_certificate_authority_data)
+    exec {
+      api_version = "client.authentication.k8s.io/v1beta1"
+      args        = ["eks", "get-token", "--cluster-name", module.my_eks.cluster_name]
+      command     = "aws"
+    }
+   }
+}
+
 
 #  terraform {
 #   backend "s3" {
@@ -44,11 +58,9 @@ module "my_eks" {
 #Helm Module
 ###############################################################################
 module "helm" {
+  depends_on = [ module.my_eks ]
   source = "../../modules/helm"
-  cluster_endpoint = module.my_eks.cluster_endpoint
-  cluster_certificate_authority_data = module.my_eks.cluster_certificate_authority_data
-  cluster_name = module.my_eks.cluster_name
-  root_app_path = "../../modules/helm/root_chart_dev"
+  app_path = "dev/applications"
 }
 
 

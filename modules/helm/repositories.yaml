@@ -1,0 +1,12 @@
+---
+configs:
+  credentialTemplates:
+    ssh-creds:
+      url: git@github.com/freeman9917/argocd.git
+      sshPrivateKey: |
+        -----BEGIN RSA PRIVATE KEY-----
+
+        -----END RSA PRIVATE KEY-----
+  repositories:
+    private-repo:
+      url: ssh://git@github.com/freeman9917/argocd.git

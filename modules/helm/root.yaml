@@ -1,0 +1,17 @@
+applications:
+    - name: root-app
+      namespace: argocd
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
+      project: default
+      source:
+        repoURL: "https://github.com/freeman9917/argocd.git"
+        targetRevision: main
+        path: "${app_path}"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
