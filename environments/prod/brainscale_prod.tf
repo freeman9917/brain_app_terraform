@@ -62,9 +62,6 @@ module "my_eks" {
 module "helm" {
   depends_on = [ module.my_eks ]
   source = "../../modules/helm"
-  # cluster_endpoint = module.my_eks.cluster_endpoint
-  # cluster_certificate_authority_data = module.my_eks.cluster_certificate_authority_data
-  # cluster_name = module.my_eks.cluster_name
   app_path = "prod/applications"
 }
 
